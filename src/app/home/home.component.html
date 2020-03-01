@@ -1,0 +1,14 @@
+<div *ngIf="!registerMode" style="text-align:center">
+  <h1>Welcome to BugTracker!</h1>
+  <p class="lead">All you need to do is sign up!</p>
+  <div class="text-center m-1 p-1">
+    <button class="btn btn-success btn-lg m-1" (click)="registerToggle()">Register</button>
+    <button class="btn btn-dark btn-lg m-1">Learn more</button>
+  </div>
+</div>
+
+<div *ngIf="registerMode" class="container">
+  <div class="col-md-4 offset-md-4">
+    <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+  </div>
+</div>

@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand text-success" href="#">BugTracker</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <a class="navbar-brand pl-3" href="#">BugTracker</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
       <li class="nav-item">
         <a class="nav-link" href="#">Projects</a>
       </li>
@@ -13,26 +13,22 @@
         <a class="nav-link" href="#">Tickets</a>
       </li>
     </ul>
-    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
-      <input class="form-control mr-sm-2" type="text" #username="ngModel" placeholder="Email" required name="username" [(ngModel)]="model.username">
-      <input class="form-control mr-sm-2" type="password" #password="ngModel" placeholder="Password" required name="password" [(ngModel)]="model.password">
-      <button class="btn btn-success my-2 my-sm-0" type="submit" [disabled]="loginForm.invalid">Sign In</button>
-    </form>
-    <ul *ngIf="loggedIn()" class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a (click)="logout()" class="nav-link" href="#">Logout</a>
-      </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome User
+    <ul *ngIf="loggedIn()" class="navbar-nav ml-auto pr-3">
+    <li class="nav-item dropdown" dropdown>
+      <a class="nav-link dropdown-toggle" href="#" dropdownToggle>
+        Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div class="dropdown-menu" *dropdownMenu>
         <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
         <div class="dropdown-divider"></div>
         <a (click)="logout()" class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Logout</a>
       </div>
     </li>
   </ul>
+  <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0 ml-auto pr-3" (ngSubmit)="login()">
+    <input class="form-control mr-sm-2" type="text" #username="ngModel" placeholder="Email" required name="username" [(ngModel)]="model.username">
+    <input class="form-control mr-sm-2" type="password" #password="ngModel" placeholder="Password" required name="password" [(ngModel)]="model.password">
+    <button class="btn btn-success my-2 my-sm-0" type="submit" [disabled]="loginForm.invalid">Sign In</button>
+  </form>
   </div>
 </nav>

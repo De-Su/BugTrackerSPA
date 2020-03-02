@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { AuthUser } from '../_models/authUser';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +29,5 @@ register(model: any) {
   return this.http.post(this.baseUrl + 'register', model, {headers: new HttpHeaders()
     .set('Content-type', 'application/json')});
 }
+
 }

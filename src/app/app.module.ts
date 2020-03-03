@@ -14,6 +14,13 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
+import { MemberListComponent } from './member-list/member-list.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { TicketListComponent } from './ticket-list/ticket-list.component';
+import { MessagesComponent } from './messages/messages.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -24,7 +31,11 @@ export function tokenGetter() {
       AppComponent,
       NavComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      MemberListComponent,
+      ProjectListComponent,
+      TicketListComponent,
+      MessagesComponent
    ],
    imports: [
       BrowserModule,
@@ -37,12 +48,14 @@ export function tokenGetter() {
          }
        }),
       BrowserAnimationsModule,
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      RouterModule.forRoot(appRoutes)
    ],
    providers: [
       AuthService,
       ErrorInterceptorProvider,
-      AlertifyService
+      AlertifyService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent

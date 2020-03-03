@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-  <a class="navbar-brand pl-3" href="#">BugTracker</a>
+  <a class="navbar-brand pl-5 text-success" [routerLink]="['/home']">BugTracker</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,21 +7,27 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
       <li class="nav-item">
-        <a class="nav-link" href="#">Projects</a>
+        <a class="nav-link" [routerLink]="['/projects']" routerLinkActive="router-link-active" >Projects</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Tickets</a>
+        <a class="nav-link" [routerLink]="['/tickets']" routerLinkActive="router-link-active" >Tickets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/messages']" routerLinkActive="router-link-active" >Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/members']" routerLinkActive="router-link-active" >Members</a>
       </li>
     </ul>
-    <ul *ngIf="loggedIn()" class="navbar-nav ml-auto pr-3">
+    <ul *ngIf="loggedIn()" class="navbar-nav ml-auto pr-5">
     <li class="nav-item dropdown" dropdown>
-      <a class="nav-link dropdown-toggle" href="#" dropdownToggle>
+      <a class="nav-link dropdown-toggle" dropdownToggle>
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </a>
       <div class="dropdown-menu" *dropdownMenu>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+        <a class="dropdown-item"><i class="fa fa-user"></i> Edit Profile</a>
         <div class="dropdown-divider"></div>
-        <a (click)="logout()" class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Logout</a>
+        <a (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
       </div>
     </li>
   </ul>

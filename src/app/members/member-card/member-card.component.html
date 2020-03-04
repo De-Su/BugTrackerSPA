@@ -1,0 +1,16 @@
+<div class="card mb-4 mt-5" [routerLink]="['/members/', user.id]">
+  <div class="card-image-wrapper">
+    <img *ngIf="user.avatar" class="card-img-top" src="{{user.avatar}}" alt="{{user.username}}">
+  </div>
+  <div class="card-body p-1">
+    <h6 class="card-title text-center mb-1">{{user.username}}</h6>
+    <p class="card-text text-muted text-center">{{user.email}}</p>
+  </div>
+</div>
+
+<!-- <div class="media mb-4 mt-4">
+  <img *ngIf="user.avatar" class="align-self-start mr-2" src="{{user.avatar}}" alt="{{user.username}}">
+  <div class="media-body">
+    <h5 class="mt-0">{{user.username | titlecase}}</h5>
+  </div>
+</div> -->

@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-image-top img-thumbnail" src="{{user.avatar}}" alt="">
+        <div class="card-body">
+          <div>
+            <strong>Email:</strong>
+            <p>{{user.email}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset>
+          <tab heading="{{user.username | titlecase}}'s projects">
+            <h4 class="text-center">Projects</h4>
+            <p *ngIf="!user.projects">Don't have any projects</p>
+            <p *ngFor="let project of user.projects">{{project.id}} - {{project.title}}</p>
+          </tab>
+          <tab heading="Tickets for {{user.username | titlecase}}">
+            <h4 class="text-center">List of tickets for {{user.username | titlecase}}</h4>
+            <p *ngIf="!user.ticketsToMe">Don't have any tickets</p>
+            <p *ngFor="let ticket of user.ticketsToMe">{{ticket.id}} - {{ticket.title}}</p>
+          </tab>
+          <tab heading="Tickets from {{user.username | titlecase}}">
+            <h4 class="text-center">List of tickets from {{user.username | titlecase}}</h4>
+            <p *ngIf="!user.ticketsFromMe">Don't have any tickets</p>
+            <p *ngFor="let ticket of user.ticketsFromMe">{{ticket.id}} - {{ticket.title}}</p>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

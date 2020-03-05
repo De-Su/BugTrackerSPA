@@ -15,8 +15,8 @@ import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
 import { MemberListComponent } from './members/member-list/member-list.component';
-import { ProjectListComponent } from './project-list/project-list.component';
-import { TicketListComponent } from './ticket-list/ticket-list.component';
+import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
@@ -25,6 +25,12 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { ProjectListResolver } from './_resolvers/project-list.resolver';
+import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
+import { ProjectDetailResolver } from './_resolvers/project-detail.resolver';
+import { TicketListResolver } from './_resolvers/ticket-list.resolver';
+import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
+import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -42,6 +48,8 @@ export function tokenGetter() {
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
+      ProjectDetailComponent,
+      TicketDetailComponent
    ],
    imports: [
       BrowserModule,
@@ -65,7 +73,11 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       MemberDetailResolver,
-      MemberListResolver
+      MemberListResolver,
+      ProjectListResolver,
+      ProjectDetailResolver,
+      TicketListResolver,
+      TicketDetailResolver
    ],
    bootstrap: [
       AppComponent

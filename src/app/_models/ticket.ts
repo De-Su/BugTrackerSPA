@@ -1,3 +1,6 @@
+import { Project } from './project';
+import { User } from './user';
+
 export interface Ticket {
     id: number;
     title: string;
@@ -5,8 +8,9 @@ export interface Ticket {
     dateCreated: Date;
     dateUpdated: Date;
     priority: number;
-    projectId: number;
     status: number;
     typeOfTicket: number;
-
+    project: Project;
+    userTo?: User;
+    userFrom: User;
 }

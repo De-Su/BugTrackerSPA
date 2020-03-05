@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row mt-2"><a href="/home" class="btn btn-success">Create new project</a></div>
+    <div class="row mt-5">Filters</div>
+    <div class="row mt-5">
+        <table class="table table-sm table-hover">
+            <thead class="text-center">
+                <tr>
+                    <th scope="col" style="width: 10%;">Id</th>
+                    <th scope="col" style="width: 20%;">Name</th>
+                    <th scope="col" style="width: 40%;">Description</th>
+                    <th scope="col" style="width: 10%;">DataCreated</th>
+                    <th scope="col" style="width: 20%;">Author</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let project of projects" [routerLink]="['/projects/', project.id]">
+                        <th scope="row">{{project.id}}</th>
+                        <td>{{project.title}}</td>
+                        <td>{{project.description}}</td>
+                        <td>{{project.dateCreated}}</td>
+                        <td>{{project.user.username}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

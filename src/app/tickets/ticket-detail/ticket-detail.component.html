@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{ticket.title}}</h3>
+          <p class="card-text">{{ticket.description}}</p>
+          <p class="card-text">{{ticket.typeOfTicket}}</p>
+          <p class="card-text">{{ticket.priority}}</p>
+          <p class="card-text">From <a [routerLink]="['/members/', ticket.userFrom.id]">{{ticket.userFrom.username}}</a></p>
+          <p class="card-text">To <a [routerLink]="['/members/', ticket.userTo.id]">{{ticket.userTo?.username}}</a></p>
+          <p class="card-text">{{ticket.dateCreated}}</p>
+          <p class="card-text">{{ticket.dateUpdated}}</p>
+          <p class="card-text">{{ticket.status}}</p>
+
+          <a [routerLink]="['/projects/', ticket.project.id]">To project {{ticket.project.title}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Comments</h4>
+          <hr>
+          <div>Here will be some comments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

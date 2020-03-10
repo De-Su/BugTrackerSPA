@@ -1,3 +1,10 @@
-.dropdown-menu a, .dropdown a {
+.dropdown a {
     cursor: pointer;
+}
+.dropdown-menu a{
+    cursor: pointer;
+    color: black;
+}
+.dropdown-menu a:hover{
+    color: white;
 }

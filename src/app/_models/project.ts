@@ -7,5 +7,6 @@ export interface Project {
     description: string;
     dateCreated: Date;
     user: User;
+    userId: number;
     tickets?: Ticket[];
 }

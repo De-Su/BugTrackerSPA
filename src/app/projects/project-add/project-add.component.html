@@ -1,0 +1,20 @@
+<div class="container">
+  <form #addProjectForm="ngForm" (ngSubmit)="addProject()">
+
+    <h4 class="text-center text-primary mt-2">Add new project</h4>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Title" required name="title" [(ngModel)]="project.title">
+    </div>
+
+    <div class="form-group">
+      <textarea rows="3" class="form-control" placeholder="Description" required name="description"
+        [(ngModel)]="project.description"></textarea>
+    </div>
+
+    <div class="form-group text-center">
+      <button class="btn btn-success" type="submit" (click)="bsModalRef.hide()">Add</button>
+      <button class="btn btn-default" type="button" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <h1>Your profile</h1>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alert alert-warning">
+        <strong>Information:</strong> You have made changes. Any unsaved changes will be lost!
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-image-top img-thumbnail" src="{{user.avatar}}" alt="">
+        <div class="card-body">
+          <div>
+            <strong>Email:</strong>
+            <p>{{user.email}}</p>
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset>
+          <tab heading="Edit profile">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+              <label for="email" class="mt-2">Email</label>
+              <input type="email" class="form-control mt-2" name="email" [(ngModel)]="user.email" />
+            </form>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

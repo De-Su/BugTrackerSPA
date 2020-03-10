@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/_models/project';
-import { ProjectService } from 'src/app/_services/project.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { ProjectAddComponent } from '../project-add/project-add.component';
 
 @Component({
   selector: 'app-project-list',
@@ -11,9 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProjectListComponent implements OnInit {
   projects: Project[];
+  bsModalRef: BsModalRef;
+  config = {
+    animated: false
+  };
 
-  constructor(private userService: ProjectService, private alertify: AlertifyService,
-              private route: ActivatedRoute) { }
+  constructor(private modalService: BsModalService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
@@ -22,5 +25,8 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
+  openModalWithComponent() {
+    this.bsModalRef = this.modalService.show(ProjectAddComponent, this.config);
+  }
 
 }

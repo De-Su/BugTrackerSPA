@@ -14,6 +14,10 @@ import { ProjectDetailResolver } from './_resolvers/project-detail.resolver';
 import { TicketListResolver } from './_resolvers/ticket-list.resolver';
 import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsafed-changes.guard';
+import { ProjectAddComponent } from './projects/project-add/project-add.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +28,8 @@ export const appRoutes: Routes = [
     children: [
       { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
       { path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver} },
+      { path: 'member/edit', component: MemberEditComponent,
+          resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges] },
       { path: 'messages', component: MessagesComponent },
       { path: 'projects', component: ProjectListComponent, resolve: {projects: ProjectListResolver} },
       { path: 'projects/:id', component: ProjectDetailComponent, resolve: {project: ProjectDetailResolver} },

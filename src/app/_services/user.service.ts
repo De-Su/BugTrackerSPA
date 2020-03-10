@@ -22,4 +22,10 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + 'users/' + id);
   }
 
+  updateUser(user: User, id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.put(this.baseUrl + 'users/' + id, user, httpOptions);
+  }
 }

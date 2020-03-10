@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap/';
+import { BsDropdownModule, TabsModule, BsModalService } from 'ngx-bootstrap/';
 
 
 import { AppComponent } from './app.component';
@@ -31,6 +31,11 @@ import { ProjectDetailResolver } from './_resolvers/project-detail.resolver';
 import { TicketListResolver } from './_resolvers/ticket-list.resolver';
 import { TicketDetailResolver } from './_resolvers/ticket-detail.resolver';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsafed-changes.guard';
+import { ProjectAddComponent } from './projects/project-add/project-add.component';
+import { TicketAddComponent } from './tickets/ticket-add/ticket-add.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -49,7 +54,10 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent,
       ProjectDetailComponent,
-      TicketDetailComponent
+      TicketDetailComponent,
+      MemberEditComponent,
+      ProjectAddComponent,
+      TicketAddComponent
    ],
    imports: [
       BrowserModule,
@@ -77,7 +85,10 @@ export function tokenGetter() {
       ProjectListResolver,
       ProjectDetailResolver,
       TicketListResolver,
-      TicketDetailResolver
+      TicketDetailResolver,
+      MemberEditResolver,
+      PreventUnsavedChanges,
+      BsModalService
    ],
    bootstrap: [
       AppComponent

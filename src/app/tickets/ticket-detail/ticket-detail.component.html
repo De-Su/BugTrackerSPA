@@ -3,17 +3,18 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title">{{ticket.title}}</h3>
-          <p class="card-text">{{ticket.description}}</p>
-          <p class="card-text">{{ticket.typeOfTicket}}</p>
-          <p class="card-text">{{ticket.priority}}</p>
-          <p class="card-text">From <a [routerLink]="['/members/', ticket.userFrom.id]">{{ticket.userFrom.username}}</a></p>
-          <p class="card-text">To <a [routerLink]="['/members/', ticket.userTo.id]">{{ticket.userTo?.username}}</a></p>
-          <p class="card-text">{{ticket.dateCreated}}</p>
-          <p class="card-text">{{ticket.dateUpdated}}</p>
-          <p class="card-text">{{ticket.status}}</p>
+          <h3 class="card-title"><strong>Title: </strong>{{ticket.title}}</h3>
+          <p class="card-text"><strong>Description: </strong>{{ticket.description}}</p>
+          <p class="card-text"><strong>Type: </strong>{{ticket.typeOfTicket}}</p>
+          <p class="card-text"><strong>Priority: </strong>{{ticket.priority}}</p>
+          <p class="card-text"><strong>Added: </strong> <a [routerLink]="['/members/', ticket?.userFrom?.id]">{{ticket?.userFrom?.username}}</a></p>
+          <p *ngIf="ticket?.userTo" class="card-text"><strong>Assigned to: </strong> <a [routerLink]="['/members/', ticket?.userTo?.id]">{{ticket?.userTo?.username}}</a></p>
+          <p *ngIf="!ticket?.userTo" class="card-text">Assign to</p>
+          <p class="card-text"><strong>Created: </strong>{{ticket.dateCreated}}</p>
+          <p class="card-text"><strong>Updated: </strong>{{ticket.dateUpdated}}</p>
+          <p class="card-text"><strong>Status: </strong>{{ticket.status}}</p>
 
-          <a [routerLink]="['/projects/', ticket.project.id]">To project {{ticket.project.title}}</a>
+          <a [routerLink]="['/projects/', ticket?.project?.id]" class="btn btn-success">Return to project {{ticket?.project?.title}}</a>
         </div>
       </div>
     </div>

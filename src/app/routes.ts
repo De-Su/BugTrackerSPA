@@ -17,7 +17,6 @@ import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.com
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsafed-changes.guard';
-import { ProjectAddComponent } from './projects/project-add/project-add.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },

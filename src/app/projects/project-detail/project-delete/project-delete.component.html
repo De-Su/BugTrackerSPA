@@ -1,0 +1,12 @@
+
+<div class="container">
+  <form #deleteProjectForm="ngForm" (ngSubmit)="deleteProject()">
+
+    <h4 class="text-center text-primary mt-2">The project and project's tickets will be deleted. Are you sure?</h4>
+    <hr>
+    <div class="form-group text-center">
+      <button class="btn btn-danger" type="submit" (click)="bsModalRef.hide()">Delete</button>
+      <button class="btn btn-default" type="button" (click)="bsModalRef.hide()">Cancel</button>
+    </div>
+  </form>
+</div>

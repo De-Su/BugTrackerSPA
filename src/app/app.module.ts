@@ -36,6 +36,8 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsafed-changes.guard';
 import { ProjectAddComponent } from './projects/project-add/project-add.component';
 import { TicketAddComponent } from './tickets/ticket-add/ticket-add.component';
+import { ProjectEditComponent } from './projects/project-detail/project-edit/project-edit.component';
+import { ProjectDeleteComponent } from './projects/project-detail/project-delete/project-delete.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -57,7 +59,9 @@ export function tokenGetter() {
       TicketDetailComponent,
       MemberEditComponent,
       ProjectAddComponent,
-      TicketAddComponent
+      TicketAddComponent,
+      ProjectEditComponent,
+      ProjectDeleteComponent
    ],
    imports: [
       BrowserModule,

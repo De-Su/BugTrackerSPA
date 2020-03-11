@@ -5,8 +5,12 @@
         <div class="card-body">
           <h3 class="card-title"><strong>Title: </strong>{{project.title}}</h3>
           <p class="card-text"><strong>Description: </strong>{{project.description}}</p>
-          <p class="card-text"><strong>Author: </strong><a [routerLink]="['/members/', project.user.id]">{{project.user.username}}</a></p>
+          <p class="card-text"><strong>Author: </strong><a
+              [routerLink]="['/members/', project.user.id]">{{project.user.username}}</a></p>
           <p class="card-text"><strong>Created: </strong>{{project.dateCreated}}</p>
+          <p *ngIf="isAuthor()" class="card-text">
+            <button class="btn btn-success mr-1" (click)="openModalEditProject()">Edit</button>
+            <button class="btn btn-danger" (click)="openModalDeleteProject()">Remove</button></p>
         </div>
       </div>
     </div>
@@ -17,7 +21,8 @@
             <div class="col-sm-8">
               <h4 class="card-title">Tickets for project</h4>
             </div>
-            <div class="col-sm-4"><button class="btn btn-success" (click)="openModalAddTicket()">Add ticket</button></div>
+            <div class="col-sm-4"><button class="btn btn-success" (click)="openModalAddTicket()">Add ticket</button>
+            </div>
           </div>
 
         </div>

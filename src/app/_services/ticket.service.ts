@@ -4,11 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Ticket } from '../_models/ticket';
 import { Observable } from 'rxjs';
 import { TicketPost } from '../_models/ticketPost';
+import { TicketPut } from '../_models/ticketPut';
+import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
+  ticketShare: Ticket;
+  usersShare: User[];
 
   baseUrl = environment.apiUrl;
 
@@ -28,4 +32,16 @@ export class TicketService {
     };
     return this.http.post(this.baseUrl + 'tickets/', ticket, httpOptions);
   }
+
+  updateTicket(ticket: TicketPut, id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.put(this.baseUrl + 'tickets/' + id, ticket, httpOptions);
+  }
+
+  deleteTicket(id: number) {
+    return this.http.delete(this.baseUrl + 'tickets/' + id);
+  }
+
 }

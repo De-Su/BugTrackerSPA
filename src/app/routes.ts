@@ -22,7 +22,7 @@ export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: '',
-    runGuardsAndResolvers: 'always',
+    runGuardsAndResolvers: () => false,
     canActivate: [AuthGuard],
     children: [
       { path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}},
@@ -33,7 +33,7 @@ export const appRoutes: Routes = [
       { path: 'projects', component: ProjectListComponent, resolve: {projects: ProjectListResolver} },
       { path: 'projects/:id', component: ProjectDetailComponent, resolve: {project: ProjectDetailResolver} },
       { path: 'tickets', component: TicketListComponent, resolve: {tickets: TicketListResolver} },
-      { path: 'tickets/:id', component: TicketDetailComponent, resolve: {ticket: TicketDetailResolver} }
+      { path: 'tickets/:id', component: TicketDetailComponent, resolve: {ticket: TicketDetailResolver, users: MemberListResolver} }
     ]
   },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },

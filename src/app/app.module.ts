@@ -38,6 +38,10 @@ import { ProjectAddComponent } from './projects/project-add/project-add.componen
 import { TicketAddComponent } from './tickets/ticket-add/ticket-add.component';
 import { ProjectEditComponent } from './projects/project-detail/project-edit/project-edit.component';
 import { ProjectDeleteComponent } from './projects/project-detail/project-delete/project-delete.component';
+import { TicketDeleteComponent } from './tickets/ticket-detail/ticket-delete/ticket-delete.component';
+import { UserService } from './_services/user.service';
+import { TicketService } from './_services/ticket.service';
+import { ProjectService } from './_services/project.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -61,7 +65,8 @@ export function tokenGetter() {
       ProjectAddComponent,
       TicketAddComponent,
       ProjectEditComponent,
-      ProjectDeleteComponent
+      ProjectDeleteComponent,
+      TicketDeleteComponent
    ],
    imports: [
       BrowserModule,
@@ -77,7 +82,7 @@ export function tokenGetter() {
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
-      TabsModule.forRoot()
+      TabsModule.forRoot(),
    ],
    providers: [
       AuthService,
@@ -92,7 +97,10 @@ export function tokenGetter() {
       TicketDetailResolver,
       MemberEditResolver,
       PreventUnsavedChanges,
-      BsModalService
+      BsModalService,
+      UserService,
+      TicketService,
+      ProjectService
    ],
    bootstrap: [
       AppComponent

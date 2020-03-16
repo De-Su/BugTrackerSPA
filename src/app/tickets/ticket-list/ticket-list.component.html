@@ -21,7 +21,7 @@
                         <td>{{ticket.typeOfTicket}}</td>
                         <td>{{ticket.priority}}</td>
                         <td>{{ticket.title}}</td>
-                        <td>{{ticket.dateCreated}}</td>
+                        <td>{{ticket.dateCreated | date: 'dd.MM.yyyy'}}</td>
                         <td>{{ticket.userFrom?.username}}</td>
                         <td>{{ticket.project?.title}}</td>
                         <td>{{ticket.status}}</td>

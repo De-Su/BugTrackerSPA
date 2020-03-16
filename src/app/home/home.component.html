@@ -1,4 +1,4 @@
-<div *ngIf="!registerMode" style="text-align:center">
+<div *ngIf="!registerMode && !tokenId" style="text-align:center">
   <h1>Welcome to BugTracker!</h1>
   <p class="lead">All you need to do is sign up!</p>
   <div class="text-center m-1 p-1">
@@ -12,3 +12,7 @@
     <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
   </div>
 </div>
+<div *ngIf="tokenId" class="container text-center">
+  <h3>Here will be some introduction and guide</h3>
+</div>
+

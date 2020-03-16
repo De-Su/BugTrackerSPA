@@ -7,7 +7,7 @@
           <p class="card-text"><strong>Description: </strong>{{project.description}}</p>
           <p class="card-text"><strong>Author: </strong><a
               [routerLink]="['/members/', project.user.id]">{{project.user.username}}</a></p>
-          <p class="card-text"><strong>Created: </strong>{{project.dateCreated}}</p>
+          <p class="card-text"><strong>Created: </strong>{{project.dateCreated | date: 'd MMMM yyyy HH:mm'}}</p>
           <p *ngIf="isAuthor()" class="card-text">
             <button class="btn btn-success mr-1" (click)="openModalEditProject()">Edit</button>
             <button class="btn btn-danger" (click)="openModalDeleteProject()">Remove</button></p>

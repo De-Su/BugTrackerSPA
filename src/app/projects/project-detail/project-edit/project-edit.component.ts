@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectPost } from 'src/app/_models/projectPost';
 import { ProjectService } from 'src/app/_services/project.service';
-import { Project } from 'src/app/_models/project';
 import { ProjectPut } from 'src/app/_models/projectPut';
 import { BsModalRef } from 'ngx-bootstrap';
 

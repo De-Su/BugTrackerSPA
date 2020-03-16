@@ -3,19 +3,151 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title"><strong>Title: </strong>{{ticket.title}}</h3>
-          <p class="card-text"><strong>Description: </strong>{{ticket.description}}</p>
-          <p class="card-text"><strong>Type: </strong>{{ticket.typeOfTicket}}</p>
-          <p class="card-text"><strong>Priority: </strong>{{ticket.priority}}</p>
-          <p class="card-text"><strong>Added: </strong> <a [routerLink]="['/members/', ticket?.userFrom?.id]">{{ticket?.userFrom?.username}}</a></p>
-          <p *ngIf="ticket?.userTo" class="card-text"><strong>Assigned to: </strong> <a [routerLink]="['/members/', ticket?.userTo?.id]">{{ticket?.userTo?.username}}</a></p>
-          <p *ngIf="!ticket?.userTo" class="card-text">Assign to</p>
-          <p class="card-text"><strong>Created: </strong>{{ticket.dateCreated}}</p>
-          <p class="card-text"><strong>Updated: </strong>{{ticket.dateUpdated}}</p>
-          <p class="card-text"><strong>Status: </strong>{{ticket.status}}</p>
+          <div *ngIf="!edit">
+            <div class="row">
+              <div class="col">
+                <h3 class="card-title">{{ticket.title}}</h3>
+              </div>
+              <div class="col text-right">
+                <p *ngIf="isAuthor() || ticket.userTo?.id == tokenId" class="card-text mt-2">
+                  <button *ngIf="!edit" class="btn btn-outline-success mr-1 btn-sm" (click)="changeTrue()">Edit</button>
+                  <button *ngIf="!edit && isAuthor()" class="btn btn-danger btn-sm"
+                    (click)="openModalDeleteTicket()">Remove</button>
+                </p>
+                <p *ngIf="!isAuthor() && !ticket?.userTo" class="card-text mt-2">
+                  <button class="btn btn-outline-success btn-sm" (click)="assignToMe()">Assign to me!</button>
+                </p>
+              </div>
+            </div>
+            <p class="card-text"><strong>Description: </strong>{{ticket.description}}</p>
+            <div [ngSwitch]="ticket.typeOfTicket">
+              <p class="card-text pb-3" *ngSwitchCase="0"><strong>Type: </strong>Task</p>
+              <p class="card-text pb-3" *ngSwitchCase="1"><strong>Type: </strong>Feature</p>
+              <p class="card-text pb-3" *ngSwitchCase="2"><strong>Type: </strong>Bug</p>
+              <p class="card-text pb-3" *ngSwitchCase="3"><strong>Type: </strong>Support</p>
+            </div>
+            <div [ngSwitch]="ticket.priority">
+              <p class="card-text pb-3" *ngSwitchCase="0"><strong>Priority: </strong>Low</p>
+              <p class="card-text pb-3" *ngSwitchCase="1"><strong>Priority: </strong>Normal</p>
+              <p class="card-text pb-3" *ngSwitchCase="2"><strong>Priority: </strong>Urgent</p>
+              <p class="card-text pb-3" *ngSwitchCase="3"><strong>Priority: </strong>Immediate</p>
+            </div>
+            <p class="card-text"><strong>Added: </strong> <a
+                [routerLink]="['/members/', ticket?.userFrom?.id]">{{ticket?.userFrom?.username}}</a></p>
+            <p *ngIf="ticket?.userTo" class="card-text"><strong>Assigned to: </strong> <a
+                [routerLink]="['/members/', ticket?.userTo?.id]">{{ticket?.userTo?.username}}</a></p>
+            <p class="card-text"><strong>Created: </strong>{{ticket.dateCreated | date: 'd MMMM yyyy HH:mm'}}</p>
+            <p *ngIf="ticket.dateCreated < ticket.dateUpdated" class="card-text"><strong>Updated:
+              </strong>{{ticket.dateUpdated | date: 'd MMMM yyyy HH:mm'}}</p>
+              <div [ngSwitch]="ticket.status">
+                <p class="card-text pb-3" *ngSwitchCase="0"><strong>Status: </strong>New</p>
+                <p class="card-text pb-3" *ngSwitchCase="1"><strong>Status: </strong>Assigned</p>
+                <p class="card-text pb-3" *ngSwitchCase="2"><strong>Status: </strong>InProgress</p>
+                <p class="card-text pb-3" *ngSwitchCase="3"><strong>Status: </strong>Resolved</p>
+                <p class="card-text pb-3" *ngSwitchCase="4"><strong>Status: </strong>Closed</p>
+              </div>
+            <a [routerLink]="['/projects/', ticket?.project?.id]" class="btn btn-primary btn-sm">Return to project
+              {{ticket?.project?.title}}</a>
+          </div>
+          <form *ngIf="edit" #editTicketForm="ngForm" (ngSubmit)="updateTicket()">
+            <div *ngIf="isAuthor()" class="form-group row">
+              <div class="col-sm-2 col-form-label">
+                <label for="title">
+                  <h3><strong>Title: </strong></h3>
+                </label>
+              </div>
+              <div class="col-sm-10">
+                <input type="text" class="form-control form-control-lg" placeholder="Title" required name="title"
+                  [(ngModel)]="ticket.title">
+              </div>
+            </div>
+            <div *ngIf="isAuthor()" class="form-group row">
+              <div class="col-sm-2 col-form-label">
+                <label for="description">
+                  <p><strong>Description: </strong></p>
+                </label>
+              </div>
+              <div class="col-sm-10">
+                <textarea class="form-control form-control-md" placeholder="Description" required name="description"
+                  [(ngModel)]="ticket.description"></textarea>
+              </div>
+            </div>
 
-          <a [routerLink]="['/projects/', ticket?.project?.id]" class="btn btn-success">Return to project {{ticket?.project?.title}}</a>
+            <div *ngIf="isAuthor()" class="form-group row mt-0 mb-0 pt-0 pb-0">
+              <div class="col-sm-2 col-form-label">
+                <label for="typeOfTicket">
+                  <p><strong>Type: </strong></p>
+                </label>
+              </div>
+              <div class="col-sm-10 ">
+                <div class="col-sm-4 ml-0 pl-0">
+                  <select class="custom-select" [(ngModel)]="ticket.typeOfTicket" name="typeOfTicket">
+                    <option [ngValue]="0">Task</option>
+                    <option [ngValue]="1">Feature</option>
+                    <option [ngValue]="2">Bug</option>
+                    <option [ngValue]="3">Support</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="isAuthor()" class="form-group row mt-0 mb-0 pt-0 pb-0">
+              <div class="col-sm-2 col-form-label">
+                <label for="priority">
+                  <p><strong>Priority: </strong></p>
+                </label>
+              </div>
+              <div class="col-sm-10">
+                <div class="col-sm-4 ml-0 pl-0">
+                  <select class="custom-select" [(ngModel)]="ticket.priority" name="priority">
+                    <option [ngValue]="0">Low</option>
+                    <option [ngValue]="1">Normal</option>
+                    <option [ngValue]="2">High</option>
+                    <option [ngValue]="3">Urgent</option>
+                    <option [ngValue]="4">Immediate</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="!isAuthor()" class="form-group row mt-0 mb-0 pt-0 pb-0">
+              <div class="col-sm-2 col-form-label">
+                <label for="status">
+                  <p><strong>Status: </strong></p>
+                </label>
+              </div>
+              <div class="col-sm-10">
+                <div class="col-sm-4 ml-0 pl-0">
+                  <select class="custom-select" [(ngModel)]="ticket.status" name="status">
+                    <option [ngValue]="1">Assigned</option>
+                    <option [ngValue]="2">InProgress</option>
+                    <option [ngValue]="3">Resolved</option>
+                    <option [ngValue]="4">Closed</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="isAuthor()" class="form-group row mt-0 mb-0 pt-0 pb-0">
+              <div class="col-sm-2 col-form-label">
+                <label for="userToId">
+                  <p><strong>Assign to: </strong></p>
+                </label>
+              </div>
+              <div class="col-sm-10">
+                <div class="col-sm-4 ml-0 pl-0">
+                  <select class="custom-select" [(ngModel)]="testId" name="userToId">
+                    <option *ngFor="let user of users" [value]="user.id">{{user.username}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button *ngIf="edit" type="submit" class="btn btn-outline-success mr-1">Save</button>
+            <button *ngIf="edit" class="btn btn-outline-primary" (click)="changeFalse()">Cancel</button>
+
+          </form>
         </div>
+
       </div>
     </div>
     <div class="col-sm-6">

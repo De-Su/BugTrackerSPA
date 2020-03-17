@@ -1,5 +1,6 @@
 import { Project } from './project';
 import { User } from './user';
+import { Image } from './image';
 
 export interface Ticket {
     id: number;
@@ -13,4 +14,5 @@ export interface Ticket {
     project: Project;
     userTo?: User;
     userFrom: User;
+    images: Image[];
 }

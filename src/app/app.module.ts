@@ -5,6 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule, TabsModule, BsModalService } from 'ngx-bootstrap/';
+import { GalleryModule } from '@ngx-gallery/core';
+import { LightboxModule } from '@ngx-gallery/lightbox';
+import { GallerizeModule } from '@ngx-gallery/gallerize';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 import { AppComponent } from './app.component';
@@ -42,6 +46,8 @@ import { TicketDeleteComponent } from './tickets/ticket-detail/ticket-delete/tic
 import { UserService } from './_services/user.service';
 import { TicketService } from './_services/ticket.service';
 import { ProjectService } from './_services/project.service';
+import { TicketImagesComponent } from './tickets/ticket-images/ticket-images.component';
+
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -66,7 +72,8 @@ export function tokenGetter() {
       TicketAddComponent,
       ProjectEditComponent,
       ProjectDeleteComponent,
-      TicketDeleteComponent
+      TicketDeleteComponent,
+      TicketImagesComponent,
    ],
    imports: [
       BrowserModule,
@@ -83,6 +90,10 @@ export function tokenGetter() {
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
+      GalleryModule,
+      LightboxModule,
+      GallerizeModule,
+      FileUploadModule
    ],
    providers: [
       AuthService,

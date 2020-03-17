@@ -44,4 +44,8 @@ export class TicketService {
     return this.http.delete(this.baseUrl + 'tickets/' + id);
   }
 
+  deleteImage(id: number) {
+    return this.http.delete(this.baseUrl + 'tickets/' + this.ticketShare.id + '/images/' + id);
+  }
+
 }

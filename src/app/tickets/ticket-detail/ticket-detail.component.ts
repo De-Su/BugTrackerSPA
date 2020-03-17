@@ -8,7 +8,6 @@ import { TicketDeleteComponent } from './ticket-delete/ticket-delete.component';
 import { AuthService } from 'src/app/_services/auth.service';
 import { User } from 'src/app/_models/user';
 import { TicketPut } from 'src/app/_models/ticketPut';
-import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -106,6 +105,8 @@ export class TicketDetailComponent implements OnInit {
   openModalDeleteTicket() {
     this.bsModalRef = this.modalService.show(TicketDeleteComponent, this.config);
   }
+
+
 
   isAuthor(): boolean {
     return this.ticket.userFrom.id === this.tokenId;

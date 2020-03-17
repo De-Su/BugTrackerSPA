@@ -20,6 +20,10 @@
               </div>
             </div>
             <p class="card-text"><strong>Description: </strong>{{ticket.description}}</p>
+            <div class="container">
+              <app-ticket-images [images]="ticket.images"></app-ticket-images>
+
+            </div>
             <div [ngSwitch]="ticket.typeOfTicket">
               <p class="card-text pb-3" *ngSwitchCase="0"><strong>Type: </strong>Task</p>
               <p class="card-text pb-3" *ngSwitchCase="1"><strong>Type: </strong>Feature</p>

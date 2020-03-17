@@ -1,0 +1,15 @@
+.nv-file-over {
+    border: dotted 3px orange;
+}
+
+input[type=file] {
+    color: transparent;
+}
+
+.fa-times {
+    color: red;
+}
+.fa-times:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}

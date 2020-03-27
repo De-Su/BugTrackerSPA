@@ -1,0 +1,11 @@
+a:hover {
+    cursor: pointer;
+}
+#card {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 99vh;
+    width: 100%;
+    overflow: auto;
+}

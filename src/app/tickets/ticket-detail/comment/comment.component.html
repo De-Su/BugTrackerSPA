@@ -1,0 +1,16 @@
+
+  <form class="mb-2" #addCommentForm="ngForm" (ngSubmit)="addComment()">
+    <textarea class="form-control form-control-sm" type="text" placeholder="Type some comment!" name="content" [(ngModel)]="comment.content"></textarea>
+    <button type="submit" class="btn btn-success btn-sm offset-sm-10 col-sm-2">Add</button>
+</form>
+<div id="card">
+<div *ngFor="let comment of newComments; trackBy:trackByFn" class="card mb-2">
+  <div class="card-body pb-1">
+    <h6 class="card-subtitle mb-2"><a [routerLink]="['/members/', comment.userId]">{{selectUser(comment.userId).username}}</a></h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{comment.dateCreated | date: 'd MMMM yyyy HH:mm'}}</h6>
+    <p class="card-text mb-1">{{comment.content}}</p>
+    <a *ngIf="comment.userId === myId" (click)="deleteComment(comment.id)" class="card-link mb-1 text-danger">Delete</a>
+  </div>
+</div>
+
+</div>

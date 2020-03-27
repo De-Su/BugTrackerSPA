@@ -9,6 +9,7 @@ import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { FileUploadModule } from 'ng2-file-upload';
+import {NgPipesModule, ReversePipe} from 'ngx-pipes';
 
 
 import { AppComponent } from './app.component';
@@ -47,6 +48,8 @@ import { UserService } from './_services/user.service';
 import { TicketService } from './_services/ticket.service';
 import { ProjectService } from './_services/project.service';
 import { TicketImagesComponent } from './tickets/ticket-images/ticket-images.component';
+import { CommentComponent } from './tickets/ticket-detail/comment/comment.component';
+import { CommentService } from './_services/comment.service';
 
 
 export function tokenGetter() {
@@ -74,6 +77,7 @@ export function tokenGetter() {
       ProjectDeleteComponent,
       TicketDeleteComponent,
       TicketImagesComponent,
+      CommentComponent
    ],
    imports: [
       BrowserModule,
@@ -93,7 +97,8 @@ export function tokenGetter() {
       GalleryModule,
       LightboxModule,
       GallerizeModule,
-      FileUploadModule
+      FileUploadModule,
+      NgPipesModule
    ],
    providers: [
       AuthService,
@@ -111,7 +116,9 @@ export function tokenGetter() {
       BsModalService,
       UserService,
       TicketService,
-      ProjectService
+      ProjectService,
+      CommentService,
+      ReversePipe
    ],
    bootstrap: [
       AppComponent

@@ -1,6 +1,7 @@
 import { Project } from './project';
 import { User } from './user';
 import { Image } from './image';
+import { Comment } from './comment';
 
 export interface Ticket {
     id: number;
@@ -15,4 +16,5 @@ export interface Ticket {
     userTo?: User;
     userFrom: User;
     images: Image[];
+    comments?: Comment[];
 }

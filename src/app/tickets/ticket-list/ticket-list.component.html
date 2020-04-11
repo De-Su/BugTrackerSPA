@@ -1,30 +1,47 @@
 <div class="container">
     <div class="row mt-5">Filters</div>
     <div class="row mt-5">
-        <table class="table table-sm table-hover">
+        <table class="table table-sm table-hover table-bordered">
             <thead class="text-center">
                 <tr>
-                    <th scope="col" >Id</th>
-                    <th scope="col" >Type</th>
-                    <th scope="col">Priority</th>
+                    <th scope="col" style="width: 5%;">Id</th>
+                    <th scope="col" style="width: 5%;">Type</th>
+                    <th scope="col" style="width: 5%;">Priority</th>
                     <th scope="col" >Name</th>
                     <th scope="col" >Created</th>
                     <th scope="col" >Author</th>
                     <th scope="col" >Project</th>
-                    <th scope="col" >Status</th>
+                    <th scope="col" style="width: 5%;">Status</th>
 
                 </tr>
             </thead>
             <tbody class="text-center">
                 <tr *ngFor="let ticket of tickets" [routerLink]="['/tickets/', ticket.id]">
                         <th scope="row">{{ticket.id}}</th>
-                        <td>{{ticket.typeOfTicket}}</td>
-                        <td>{{ticket.priority}}</td>
+                        <td [ngSwitch]="ticket.typeOfTicket">
+                            <img src="/assets/Task.png" alt="task" height="24" *ngSwitchCase="0">
+                            <img src="/assets/Feature.png" alt="feature" height="24" *ngSwitchCase="1">
+                            <img src="/assets/Bug.png" alt="bug" height="24" *ngSwitchCase="2">
+                            <img src="/assets/Support.png" alt="support" height="24" *ngSwitchCase="3">
+                          </td>
+                          <td [ngSwitch]="ticket.priority">
+                            <img src="/assets/Low.png" alt="low" height="24" *ngSwitchCase="0">
+                            <img src="/assets/Normal.png" alt="normal" height="24" *ngSwitchCase="1">
+                            <img src="/assets/High.png" alt="urgent" height="24" *ngSwitchCase="2">
+                            <img src="/assets/Urgent.png" alt="urgent" height="24" *ngSwitchCase="3">
+                            <img src="/assets/Immediate.png" alt="immediate" height="24" *ngSwitchCase="4">
+                          </td>
                         <td>{{ticket.title}}</td>
                         <td>{{ticket.dateCreated | date: 'dd.MM.yyyy'}}</td>
                         <td>{{ticket.userFrom?.username}}</td>
                         <td>{{ticket.project?.title}}</td>
-                        <td>{{ticket.status}}</td>
+                        <td [ngSwitch]="ticket.status">
+                            <img src="/assets/New.png" alt="immediate" height="24" *ngSwitchCase="0">
+                            <img src="/assets/Assigned.png" alt="immediate" height="24" *ngSwitchCase="1">
+                            <img src="/assets/InProgress.png" alt="immediate" height="24" *ngSwitchCase="2">
+                            <img src="/assets/Resolved.png" alt="immediate" height="24" *ngSwitchCase="3">
+                            <img src="/assets/Closed.png" alt="immediate" height="24" *ngSwitchCase="4">
+                          </td>
                 </tr>
             </tbody>
         </table>

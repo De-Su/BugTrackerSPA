@@ -25,16 +25,18 @@
 
             </div>
             <div [ngSwitch]="ticket.typeOfTicket">
-              <p class="card-text pb-3" *ngSwitchCase="0"><strong>Type: </strong>Task</p>
-              <p class="card-text pb-3" *ngSwitchCase="1"><strong>Type: </strong>Feature</p>
-              <p class="card-text pb-3" *ngSwitchCase="2"><strong>Type: </strong>Bug</p>
-              <p class="card-text pb-3" *ngSwitchCase="3"><strong>Type: </strong>Support</p>
+              
+              <p class="card-text pb-3" *ngSwitchCase="0"><strong>Type: </strong>Task <img src="/assets/Task.png" alt="task" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="1"><strong>Type: </strong>Feature <img src="/assets/Feature.png" alt="feature" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="2"><strong>Type: </strong>Bug <img src="/assets/Bug.png" alt="bug" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="3"><strong>Type: </strong>Support <img src="/assets/Support.png" alt="support" height="24"></p>
             </div>
             <div [ngSwitch]="ticket.priority">
-              <p class="card-text pb-3" *ngSwitchCase="0"><strong>Priority: </strong>Low</p>
-              <p class="card-text pb-3" *ngSwitchCase="1"><strong>Priority: </strong>Normal</p>
-              <p class="card-text pb-3" *ngSwitchCase="2"><strong>Priority: </strong>Urgent</p>
-              <p class="card-text pb-3" *ngSwitchCase="3"><strong>Priority: </strong>Immediate</p>
+              <p class="card-text pb-3" *ngSwitchCase="0"><strong>Priority: </strong>Low <img src="/assets/Low.png" alt="low" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="1"><strong>Priority: </strong>Normal <img src="/assets/Normal.png" alt="normal" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="2"><strong>Priority: </strong>High <img src="/assets/High.png" alt="urgent" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="3"><strong>Priority: </strong>Urgent <img src="/assets/Urgent.png" alt="urgent" height="24"></p>
+              <p class="card-text pb-3" *ngSwitchCase="4"><strong>Priority: </strong>Immediate <img src="/assets/Immediate.png" alt="immediate" height="24"></p>
             </div>
             <p class="card-text"><strong>Added: </strong> <a
                 [routerLink]="['/members/', ticket?.userFrom?.id]">{{ticket?.userFrom?.username}}</a></p>
@@ -44,11 +46,11 @@
             <p *ngIf="ticket.dateCreated < ticket.dateUpdated" class="card-text"><strong>Updated:
               </strong>{{ticket.dateUpdated | date: 'd MMMM yyyy HH:mm'}}</p>
               <div [ngSwitch]="ticket.status">
-                <p class="card-text pb-3" *ngSwitchCase="0"><strong>Status: </strong>New</p>
-                <p class="card-text pb-3" *ngSwitchCase="1"><strong>Status: </strong>Assigned</p>
-                <p class="card-text pb-3" *ngSwitchCase="2"><strong>Status: </strong>InProgress</p>
-                <p class="card-text pb-3" *ngSwitchCase="3"><strong>Status: </strong>Resolved</p>
-                <p class="card-text pb-3" *ngSwitchCase="4"><strong>Status: </strong>Closed</p>
+                <p class="card-text pb-3" *ngSwitchCase="0"><strong>Status: </strong>New <img src="/assets/New.png" alt="immediate" height="24"></p>
+                <p class="card-text pb-3" *ngSwitchCase="1"><strong>Status: </strong>Assigned <img src="/assets/Assigned.png" alt="immediate" height="24"></p>
+                <p class="card-text pb-3" *ngSwitchCase="2"><strong>Status: </strong>InProgress <img src="/assets/InProgress.png" alt="immediate" height="24"></p>
+                <p class="card-text pb-3" *ngSwitchCase="3"><strong>Status: </strong>Resolved <img src="/assets/Resolved.png" alt="immediate" height="24"></p>
+                <p class="card-text pb-3" *ngSwitchCase="4"><strong>Status: </strong>Closed <img src="/assets/Closed.png" alt="immediate" height="24"></p>
               </div>
             <a [routerLink]="['/projects/', ticket?.project?.id]" class="btn btn-primary btn-sm">Return to project
               {{ticket?.project?.title}}</a>
